@@ -15,7 +15,7 @@ void cat_audio (FILE *output, char filenames[])
 static long i, j=0;
 short *new_audio_data;
 FILE *audio = NULL;
-
+int aux;
 
 	
 	 
@@ -25,22 +25,24 @@ FILE *audio = NULL;
 		else
 			load_header(audio, &head_cat);
 		
-		//new_audio_data = malloc(head.SubChunk2Size+head_cat.SubChunk2Size);
 		
-	//	for (i = 0; i<head.SubChunk2Size/2; i++)
-	//		new_audio_data[i] = head.Audio_data[i];	
 	
 		if (head_cat.SampleRate == head.SampleRate)
 		{
 				for (i = 0; i < head.SubChunk2Size/2; i++)
 				{
-					head.Audio_data[i] += head_cat.Audio_data[i];
+					aux = head.Audio_data[i] + head_cat.Audio_data[i];
+			                 if (aux > 32767)
+		        	                 head.Audio_data[i] = 32767;
+               				 else if (aux < -32768)
+                       				 head.Audio_data[i] = -32768;
+           				 else   
+                      				 head.Audio_data[i] = aux;
+
 					
 				}
         	
 		}
-	//	head.SubChunk2Size += head_cat.SubChunk2Size;
-		//head.Audio_data = new_audio_data;
 		fclose(audio);
 
 }

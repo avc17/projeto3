@@ -26,7 +26,7 @@ int y, aux;
     {
 			aux = head.Audio_data[i];
 			aux += head.Audio_data[i-y]*aten;
-			fwrite(&j, 2, 1, output);
+			fwrite(&aux, 2, 1, output);
  
     }
 }

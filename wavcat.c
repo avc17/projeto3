@@ -25,22 +25,23 @@ FILE *audio = NULL;
 		else
 			load_header(audio, &head_cat);
 		
-		//new_audio_data = malloc(head.SubChunk2Size+head_cat.SubChunk2Size);
+		new_audio_data = malloc(head.SubChunk2Size+head_cat.SubChunk2Size);
 		
-	//	for (i = 0; i<head.SubChunk2Size/2; i++)
-	//		new_audio_data[i] = head.Audio_data[i];	
+		for (i = 0; i<head.SubChunk2Size/2; i++)
+			new_audio_data[i] = head.Audio_data[i];	
 	
 		if (head_cat.SampleRate == head.SampleRate)
 		{
-				for (i = 0; i < head.SubChunk2Size/2; i++)
+				for (i = head.SubChunk2Size/2;i<(head.SubChunk2Size+head_cat.SubChunk2Size)/2; i++)
 				{
-					head.Audio_data[i] += head_cat.Audio_data[i];
+					new_audio_data[i] = head_cat.Audio_data[i];
 					
 				}
         	
 		}
-	//	head.SubChunk2Size += head_cat.SubChunk2Size;
-		//head.Audio_data = new_audio_data;
+		head.SubChunk2Size += head_cat.SubChunk2Size;
+		
+		head.Audio_data = new_audio_data;
 		fclose(audio);
 
 }
