@@ -12,8 +12,7 @@ cabecalho head;
 cabecalho head_cat;
 void cat_audio (FILE *output, char filenames[])
 {   
-static long i, j=0;
-short *new_audio_data;
+static long i;
 FILE *audio = NULL;
 int aux;
 
@@ -54,7 +53,6 @@ char saida[TAM];
 int i, j=0;	
 
     saida[0] = 0;	
-	printf("oi");
     if (pertence(argc, argv, "-o"))
     {
         i = arg_indice(argc, argv, "-o");

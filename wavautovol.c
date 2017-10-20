@@ -50,7 +50,6 @@ FILE *audio, *output;
 char filename[TAM];
 char saida[TAM];
 int i;	
-float x;
     saida[0] = 0;	
 	filename[0] = 0;
     if (pertence(argc, argv, "-i"))
@@ -62,12 +61,6 @@ float x;
     {
         i = arg_indice(argc, argv, "-o");
         strcpy(saida, argv[i]);
-    }
-
-    if (pertence(argc, argv, "-l"))
-    {
-        i = arg_indice(argc, argv, "-l");
-		x = atof(argv[i]);
     }
 	
 	if (filename[0] == 0)

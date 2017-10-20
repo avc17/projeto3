@@ -8,11 +8,11 @@
 
 
 cabecalho head;
-
 cabecalho head_cat;
+
 void cat_audio (FILE *output, char filenames[])
 {   
-static long i, j=0;
+unsigned int i;
 short *new_audio_data;
 FILE *audio = NULL;
 
@@ -50,10 +50,10 @@ int main (int argc, char *argv[])
 FILE *audio = NULL, *output = NULL;  
 char filename[TAM];
 char saida[TAM];
-int i, j=0;	
+int i, cont = 0;
 
     saida[0] = 0;	
-	printf("oi");
+
     if (pertence(argc, argv, "-o"))
     {
         i = arg_indice(argc, argv, "-o");
@@ -86,19 +86,19 @@ int i, j=0;
 					return -1;
 			}
 		
-			if (j == 0)
+			if (cont == 0)
 			{
 				load_header(audio, &head);
 				
 			}
 			
-			if (j != 0)
+			if (cont != 0)
 			{
 				cat_audio(output, filename);
 			}
 										
 			
-			j++;
+			cont++;
 		}
 	
 	}	
